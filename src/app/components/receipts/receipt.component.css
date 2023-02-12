@@ -1,0 +1,12 @@
+.container {
+    margin-top: 25px;
+  }
+  
+  .required-field-marker {
+    color: red;
+  }
+  
+  td {
+    font-size: 14px;
+  }
+  
