@@ -1,23 +1,23 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Receipt } from 'src/app/models/receipt.model';
-import { ReceiptService } from 'src/app/services/receipt.service';
+import { Medicine } from 'src/app/models/medicine.model';
+import { MedicineService } from 'src/app/services/medicine.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-receipt',
-  templateUrl: './receipt.component.html',
-  styleUrls: ['./receipt.component.css']
+  selector: 'app-medicine',
+  templateUrl: './medicine.component.html',
+  styleUrls: ['./medicine.component.css']
 })
-export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
+export class MedicineComponent implements OnInit, AfterViewInit, OnDestroy{
   @ViewChild(DataTableDirective, {static: false})
   dtElement!: DataTableDirective;
-  createModel = {} as Receipt;
-  editModel = {} as Receipt;
+  createModel = {} as Medicine;
+  editModel = {} as Medicine;
 
-  receipts = [] as Receipt[];
+  medicines = [] as Medicine[];
 
   dtOptions: DataTables.Settings = {
     scrollX: true,
@@ -28,7 +28,7 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
    dtTrigger: Subject<any> = new Subject();
 
   constructor (
-    private receiptService: ReceiptService,
+    private medicineService: MedicineService,
     private modalService: NgbModal,
     private toastService: ToastrService
   ) { }
@@ -62,13 +62,13 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
           return;
         }
         try{
-          this.receiptService.create(this.createModel).then(() => {
+          this.medicineService.create(this.createModel).then(() => {
             this.reloadData().then(()=> {
               this.rerender()
             });
           })
 
-          this.toastService.success("Receipt created successfully");          
+          this.toastService.success("Medicine created successfully");          
         }
         catch {
           this.toastService.error("Something went wrong");
@@ -81,13 +81,13 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
       .result.then(() => {
         try{
-          this.receiptService.delete(id).then(() => {
+          this.medicineService.delete(id).then(() => {
             this.reloadData().then(()=> {
               this.rerender()
             });
           })
 
-          this.toastService.success("Receipt deleted successfully");          
+          this.toastService.success("Medicine deleted successfully");          
         }
         catch {
           this.toastService.error("Something went wrong");
@@ -97,7 +97,7 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
 
   openEditModal(content: any, id: number) {
     this.clearModels();
-    this.editModel = this.receipts.find(p=>p.id === id)!;
+    this.editModel = this.medicines.find(p=>p.id === id)!;
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
       .result.then(() => {
@@ -106,13 +106,13 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
         }
 
         try{
-          this.receiptService.update(id,this.editModel).then(() => {
+          this.medicineService.update(id,this.editModel).then(() => {
             this.reloadData().then(()=> {
               this.rerender()
             });
           })
 
-          this.toastService.success("Receipt edited successfully");          
+          this.toastService.success("Medicine edited successfully");          
         }
         catch {
           this.toastService.error("Something went wrong");
@@ -121,7 +121,7 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   private async reloadData() {
-    this.receipts = await this.receiptService.getAll();
+    this.medicines = await this.medicineService.getAll();
   }
 
   private clearModels() {
@@ -130,13 +130,13 @@ export class ReceiptComponent implements OnInit, AfterViewInit, OnDestroy{
       name: "",
       description: "",
       price: 0
-    } as Receipt;
+    } as Medicine;
 
     this.editModel = {
       name: "",
       description: "",
       price: 0.0
-    } as Receipt
+    } as Medicine
   }
   
   get isCreateModelValid() {

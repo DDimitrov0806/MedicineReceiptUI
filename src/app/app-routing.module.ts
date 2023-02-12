@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReceiptComponent } from './components/receipts/receipt.component';
+import { MedicineComponent } from './components/medicine/medicine.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'receipt', pathMatch: 'full'},
-  { path: 'receipt', component: ReceiptComponent}
+  { path: '', redirectTo: 'medicine', pathMatch: 'full'},
+  { path: 'medicine', component: MedicineComponent}
 ];
 
 @NgModule({

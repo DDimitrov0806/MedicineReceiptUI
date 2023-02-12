@@ -1,30 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Receipt } from '../models/receipt.model';
+import { Medicine } from '../models/medicine.model';
 
-const baseUrl = 'http://127.0.0.1:8000/api/receipts/';
+const baseUrl = 'http://127.0.0.1:8000/api/medicines/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReceiptService {
+export class MedicineService {
 
   constructor(private http: HttpClient) { }
 
-  async getAll(): Promise<Receipt[]> {
-    return await lastValueFrom(this.http.get<Receipt[]>(baseUrl));
+  async getAll(): Promise<Medicine[]> {
+    return await lastValueFrom(this.http.get<Medicine[]>(baseUrl));
   }
 
-  async get(id: number): Promise<Receipt> {
-    return await lastValueFrom(this.http.get<Receipt>(`${baseUrl}${id}/`));
+  async get(id: number): Promise<Medicine> {
+    return await lastValueFrom(this.http.get<Medicine>(`${baseUrl}${id}/`));
   }
 
-  async create(data: Receipt) {
+  async create(data: Medicine) {
     return await lastValueFrom(this.http.post(baseUrl, data,{responseType: "text"}));
   }
 
-  async update(id: number, data: Receipt) {
+  async update(id: number, data: Medicine) {
     return await lastValueFrom(this.http.put(`${baseUrl}${id}/`, data,{responseType: "text"}));
   }
 

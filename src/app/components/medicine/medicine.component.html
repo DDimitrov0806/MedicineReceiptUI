@@ -6,7 +6,7 @@
   </div>
   
   <!-- Table -->
-  <div class="container content-container" *ngIf="receipts">
+  <div class="container content-container" *ngIf="medicines">
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display compact" style="width:100%">
       <thead>
         <tr>
@@ -17,13 +17,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let receipt of receipts">
-          <td>{{ receipt.name }}</td>
-          <td>{{ receipt.description }}</td>
-          <td>{{ receipt.price }}</td>
+        <tr *ngFor="let medicine of medicines">
+          <td>{{ medicine.name }}</td>
+          <td>{{ medicine.description }}</td>
+          <td>{{ medicine.price }}</td>
           <td>
-            <button (click)="openEditModal(editModal, receipt.id)" class="btn">Edit </button>
-            <button (click)="openDeleteModal(deleteModal, receipt.id)" class="btn">Delete</button>
+            <button (click)="openEditModal(editModal, medicine.id)" class="btn">Edit </button>
+            <button (click)="openDeleteModal(deleteModal, medicine.id)" class="btn">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -33,7 +33,7 @@
   <!-- Create modal -->
   <ng-template #createModal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">New receipt</h4>
+      <h4 class="modal-title" id="modal-basic-title">New medicine</h4>
       <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -70,7 +70,7 @@
   <!-- Edit modal -->
   <ng-template #editModal let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Edit receipt</h4>
+      <h4 class="modal-title" id="modal-basic-title">Edit medicine</h4>
       <button type="button" class="btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -113,7 +113,7 @@
       </button>
     </div>
     <div class="modal-body">
-      Are you sure you want to delete this Receipt?
+      Are you sure you want to delete this Medicine?
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()"><i class="fas fa-times"></i><span class="left-padding">Cancel</span></button>

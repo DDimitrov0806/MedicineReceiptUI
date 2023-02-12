@@ -6,7 +6,7 @@ import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReceiptComponent } from './components/receipts/receipt.component';
+import { MedicineComponent } from './components/medicine/medicine.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    ReceiptComponent
+    MedicineComponent
   ],
   imports: [
     BrowserModule,
