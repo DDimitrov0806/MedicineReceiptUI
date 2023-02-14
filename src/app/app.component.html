@@ -3,9 +3,30 @@
     <a href="#" class="navbar-brand">MedicineReceipts</a>
     <div class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a routerLink="medicines" class="nav-link">Medicines</a>
+        <a routerLink="medicine" class="nav-link">Medicines</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="doctor" class="nav-link">Doctors</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="pharmacy" class="nav-link">Pharmacy</a>
       </li>
     </div>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!authService.isAuthenticated">
+      <li class="nav-item">
+        <a href="register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated">
+      <li class="nav-item">
+        <a href class="nav-link" (click)="authService.logout()">LogOut</a>
+      </li>
+    </ul>
   </nav>
 
   <div class="container mt-3">

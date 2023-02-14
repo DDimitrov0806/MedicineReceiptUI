@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { StorageService } from './services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,14 @@ export class AppComponent implements OnInit{
   title = 'MedicineReceipts';
   dtOptions: DataTables.Settings = {};
   posts: any;
+
+  isLoggedIn = false;
+  username?: string;
    
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private storageService: StorageService,
+    public authService: AuthService) { }
    
   ngOnInit(): void {
     this.dtOptions = {
@@ -24,6 +32,7 @@ export class AppComponent implements OnInit{
       .subscribe(posts => {
         this.posts = posts;
     });
-   
+
+    this.isLoggedIn = this.storageService.isLoggedIn();
   }
 }

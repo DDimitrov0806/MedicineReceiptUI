@@ -1,30 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Medicine } from '../models/medicine.model';
+import { Doctor } from '../models/doctor.model';
 
-const baseUrl = 'http://localhost:8000/api/medicine';
+const baseUrl = 'http://localhost:8000/api/doctor';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MedicineService {
+export class DoctorService {
 
   constructor(private http: HttpClient) { }
 
-  async getAll(): Promise<Medicine[]> {
-    return await lastValueFrom(this.http.get<Medicine[]>(baseUrl));
+  async getAll(): Promise<Doctor[]> {
+    return await lastValueFrom(this.http.get<Doctor[]>(baseUrl));
   }
 
-  async get(id: number): Promise<Medicine> {
-    return await lastValueFrom(this.http.get<Medicine>(`${baseUrl}/${id}`));
+  async get(id: number): Promise<Doctor> {
+    return await lastValueFrom(this.http.get<Doctor>(`${baseUrl}/${id}`));
   }
 
-  async create(data: Medicine) {
+  async create(data: Doctor) {
     return await lastValueFrom(this.http.post(baseUrl, data,{responseType: "text"}));
   }
 
-  async update(id: number, data: Medicine) {
+  async update(id: number, data: Doctor) {
     return await lastValueFrom(this.http.put(`${baseUrl}/${id}`, data,{responseType: "text"}));
   }
 
