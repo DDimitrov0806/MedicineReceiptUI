@@ -1,0 +1,20 @@
+<div class="container content-container" *ngIf="patients">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display compact" style="width:100%">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>PIN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients">
+          <td>{{ patient.user.first_name }}</td>
+          <td>{{ patient.user.last_name }}</td>
+          <td>{{ patient.user.address }}</td>
+          <td>{{ patient.pin }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

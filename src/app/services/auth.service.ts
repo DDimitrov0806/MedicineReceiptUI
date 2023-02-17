@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { HttpRequestInterceptor } from '../http.interceptor';
 
 const baseUrl = 'http://localhost:8000/api/';
 
@@ -14,25 +15,40 @@ const baseUrl = 'http://localhost:8000/api/';
 })
 export class AuthService {
   isAuthenticated = false;
-  
+  private accessToken?: string;
+  isDoctor = false;
+  isPatient = false;
+
   constructor(
     private http: HttpClient,
     private router: Router
-    ) {}
+  ) { }
 
-  login(data:any): Observable<any> {
-    this.isAuthenticated = true;
-    return this.http.post(`${baseUrl}login/`, data);
+  async login(data: any): Promise<any> {
+    return await lastValueFrom(this.http.post(`${baseUrl}login/`, data));
   }
 
-  register(data:any): Observable<any> {
+  register(data: any): Observable<any> {
     return this.http.post(`${baseUrl}register/`, data);
   }
 
-  logout(){
+  logout() {
+    this.accessToken = undefined;
     this.isAuthenticated = false;
-    localStorage.removeItem('token');
-
+    this.isDoctor=false;
+    this.isPatient=false;
     this.router.navigate(['/login']);
+  }
+
+  setToken(token: any) {
+    this.accessToken = token;
+  }
+
+  getToken() {
+    return this.accessToken;
+  }
+
+  setDoctor(isDoctor:boolean){
+    this.isDoctor=isDoctor
   }
 }

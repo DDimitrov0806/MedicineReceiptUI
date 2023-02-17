@@ -13,12 +13,10 @@ export class AppComponent implements OnInit{
   dtOptions: DataTables.Settings = {};
   posts: any;
 
-  isLoggedIn = false;
   username?: string;
    
   constructor(
     private http: HttpClient,
-    private storageService: StorageService,
     public authService: AuthService) { }
    
   ngOnInit(): void {
@@ -32,7 +30,5 @@ export class AppComponent implements OnInit{
       .subscribe(posts => {
         this.posts = posts;
     });
-
-    this.isLoggedIn = this.storageService.isLoggedIn();
   }
 }

@@ -1,7 +1,15 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" formControlName="username" class="form-control">
+    <label for="firstName">First Name:</label>
+    <input type="text" formControlName="firstName" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" formControlName="lastName" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="address">Address:</label>
+    <input type="address" formControlName="address" class="form-control">
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
@@ -11,5 +19,23 @@
     <label for="password">Password:</label>
     <input type="password" formControlName="password" class="form-control">
   </div>
+  <div class="form-group" *ngIf="isPatient()">
+    <label for="pin">PIN:</label>
+    <input type="pin" formControlName="pin" class="form-control">
+  </div>
+  <div class="form-group" *ngIf="isDoctor()">
+    <label for="specialty">Specialty:</label>
+    <input type="specialty" formControlName="specialty" class="form-control">
+  </div>
+  <div>
+    <label for="patient">
+      <input type="radio" formControlName="role" value="patient" (change)="onUserTypeChange()">
+    Patient</label>
+  </div>
+  <div >    
+    <label for="doctor">
+      <input type="radio" formControlName="role" value="doctor" (change)="onUserTypeChange()">
+    Doctor</label>
+ </div>
   <button [disabled]="registerForm.invalid" class="btn btn-primary">Submit</button>
 </form>

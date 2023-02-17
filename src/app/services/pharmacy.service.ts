@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Pharmacy } from '../models/pharmacy.model';
@@ -11,7 +11,6 @@ const baseUrl = 'http://localhost:8000/api/pharmacy';
   providedIn: 'root'
 })
 export class PharmacyService {
-
   constructor(private http: HttpClient) { }
 
   async getAll(): Promise<Pharmacy[]> {

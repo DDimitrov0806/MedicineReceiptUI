@@ -15,6 +15,7 @@ import { PharmacyComponent } from './components/pharmacy/pharmacy.component';
 import { httpInterceptorProviders } from './http.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { PatientComponent } from './components/patient/patient.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './components/login/login.component';
     DoctorComponent,
     PharmacyComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PatientComponent
   ],
   imports: [
     BrowserModule,

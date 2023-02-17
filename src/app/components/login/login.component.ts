@@ -11,7 +11,11 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -20,11 +24,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.authService.login(this.loginForm.value)
-      .subscribe(data => {
-        console.log(data);
-        this.router.navigate(['/medicine']);
-      });
+  async onSubmit() {
+    let data = await this.authService.login(this.loginForm.value)
+      // .then(data => {
+      //   this.authService.setToken(data['access']);
+      //   this.authService.isAuthenticated=true;
+      //   this.authService.isDoctor=data['isDoctor'];
+      //   this.authService.isPatient=data['isPatient'];
+      //   this.router.navigate(['/medicine']);
+      // });
+
+      console.log(data);
+
+      this.authService.setToken(data['access']);
+      this.authService.isAuthenticated=true;
+      this.authService.isDoctor=data['isDoctor'];
+      this.authService.isPatient=data['isPatient'];
+      this.router.navigate(['/medicine']);
+      console.log(this.authService.isDoctor);
   }
 }
