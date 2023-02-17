@@ -6,12 +6,23 @@
         <a routerLink="medicine" class="nav-link">Medicines</a>
       </li>
       <li class="nav-item">
-        <a routerLink="doctor" class="nav-link">Doctors</a>
-      </li>
-      <li class="nav-item">
         <a routerLink="pharmacy" class="nav-link">Pharmacy</a>
       </li>
+      <li class="nav-item">
+        <a routerLink="doctor" class="nav-link">Doctor</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="patient" class="nav-link">Patients</a>
+      </li>
     </div>
+
+    <ul class="navbar-nav mr-auto" >
+      
+    </ul>
+
+    <ul class="navbar-nav mr-auto" >
+
+    </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!authService.isAuthenticated">
       <li class="nav-item">
