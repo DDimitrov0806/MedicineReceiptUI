@@ -15,19 +15,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   setToken(token?: string) {
     console.log(token);
-    console.log("FROM SET");
     this.token = token;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // req = req.clone({
-    //   withCredentials: true,
-    // });
-
-    // return next.handle(req);
-    // console.log(this.token);
-    // console.log("FROM METH");
-
     this.token = this.authService.getToken();
     if (this.token) {
       

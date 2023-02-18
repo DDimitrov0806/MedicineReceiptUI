@@ -61,8 +61,6 @@ export class PharmacyComponent implements OnInit {
     await this.reloadData();
 
     this.rowData = await this.pharmacyMedicineService.getAll();
-
-    console.log(this.rowData);
     
     this.columnDefs = [
       { field: 'pharmacy_name', headerName: "Pharmacy", rowGroup: true, hide: true},

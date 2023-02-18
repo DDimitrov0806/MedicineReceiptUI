@@ -26,21 +26,11 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     let data = await this.authService.login(this.loginForm.value)
-      // .then(data => {
-      //   this.authService.setToken(data['access']);
-      //   this.authService.isAuthenticated=true;
-      //   this.authService.isDoctor=data['isDoctor'];
-      //   this.authService.isPatient=data['isPatient'];
-      //   this.router.navigate(['/medicine']);
-      // });
-
-      console.log(data);
 
       this.authService.setToken(data['access']);
       this.authService.isAuthenticated=true;
       this.authService.isDoctor=data['isDoctor'];
       this.authService.isPatient=data['isPatient'];
       this.router.navigate(['/medicine']);
-      console.log(this.authService.isDoctor);
   }
 }
