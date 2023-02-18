@@ -134,16 +134,15 @@ export class MedicineComponent implements OnInit, AfterViewInit, OnDestroy{
 
     this.editModel = {
       name: "",
-      description: "",
-      price: 0.0
+      description: ""
     } as Medicine
   }
   
   get isCreateModelValid() {
-    return this.createModel.name && this.createModel.price;
+    return this.createModel.name;
   }
 
   get isEditModelValid() {
-    return this.editModel.name && this.editModel.price;
+    return this.editModel.name;
   }
 }
